@@ -1,0 +1,49 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
+
+#뷰 리졸버 설정
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+ 
+#데이터소스 설정  
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/zerogram?serverTimezone=Asia/Seoul
+    username: zero
+    password: 1
+ 
+ #jpa 설정 ddl-auto : create 일 경우 서버 가동시 table drop , create, update, none
+  jpa:
+    open-in-view: true # 뷰 까지 세션 공유
+    hibernate:
+      ddl-auto: update
+      naming: 
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+ 
+  # 파일용량 제한.
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2MB
+
+  security:
+    user:
+      name: test
+      password: 1234
+    oauth2:      client:        registration:
+          facebook:
+            client-id: 306381271192232
+            client-secret: 14487fb7b7bc6c2a888d41935963fb33
+            scope:            - public_profile
+            - email
+file:
+  path: C:/dev/workspace/springbootwork/upload/
